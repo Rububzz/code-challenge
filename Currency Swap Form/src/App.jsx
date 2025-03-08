@@ -51,10 +51,10 @@ function App() {
   }, []);
 
   return (
-    <div className="flex h-full overflow-hidden bg-gray-900">
+    <div className="flex h-full overflow-hidden bg-gradient-to-r from-gray-600 to-gray-800">
       {/* Left Section: Takes 1/5 of the screen width */}
       <div className="w-[20vw] h-full p-4 flex flex-col justify-start">
-        <h1 className="text-2xl font-bold mb-4 text-center text-white">
+        <h1 className="text-3xl font-bold text-center text-gray-200">
           Cryptocurrency Prices
         </h1>
 
@@ -65,17 +65,17 @@ function App() {
       </div>
 
       {/* Right Section: Takes the remaining 4/5 of the screen width */}
-      <div className="w-[80vw] h-full bg-gray-900 flex flex-col">
+      <div className="w-[80vw] h-full flex flex-col">
         {/* Other content */}
-        <h1 className="text-9xl font-bold mb-6 text-center text-blue-300">
+        <h1 className="text-9xl text-transparent font-bold mb-6 text-center bg-gradient-to-r from-gray-200 to-gray-500 by bg-clip-text leading-normal">
           Currency Swap
         </h1>
-        <h2 className="text-3xl text-center text-white">
+        <h2 className="text-3xl text-center text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-500">
           Simply press on the currency and select the currency you want to
           convert to and from, <br />
           and press convert!
         </h2>
-        <div className="items-center justify-items-self align-middle mt-16">
+        <div className="items-center justify-items-self align-middle mt-8">
           <ConversionForm prices={prices} tokens={tokenImages} />
         </div>
       </div>

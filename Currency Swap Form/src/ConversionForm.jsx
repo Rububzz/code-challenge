@@ -32,7 +32,7 @@ const CustomSelect = ({ options, value, onChange, getToken }) => {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={handleToggle}
-        className="w-full p-2 bg-gray-700 text-white rounded-md flex"
+        className="w-full p-2 bg-gray-800 text-white rounded-md flex"
       >
         <span className="flex-grow justify-items-start">{value}</span>
         <div className="items-end">
@@ -40,8 +40,8 @@ const CustomSelect = ({ options, value, onChange, getToken }) => {
         </div>
       </button>
       {isOpen && (
-        <div className="absolute z-10 w-full bg-gray-800 text-white mt-1 rounded-md">
-          <div className="sticky top-0 bg-gray-800 p-2">
+        <div className="absolute z-10 w-full bg-gray-800 text-white rounded-md">
+          <div className="sticky top-0 bg-gray-800 p-2 rounded-md">
             <input
               type="text"
               placeholder="Search..."
@@ -55,7 +55,7 @@ const CustomSelect = ({ options, value, onChange, getToken }) => {
               <li
                 key={`${option.value}-${index}`}
                 onClick={() => handleSelect(option.value)}
-                className="p-2 hover:bg-gray-700 cursor-pointer flex items-center"
+                className="p-2 hover:bg-gray-700 cursor-pointer flex items-center rounded-md"
               >
                 <span className="flex-grow">{option.label}</span>
                 <div className="items-end">
@@ -107,10 +107,17 @@ const ConversionForm = React.memo(({ prices, tokens }) => {
     setConvertedNumber(returnvalue);
   };
 
+  const handleInputChange = (event) => {
+    const value = event.target.value;
+    if (value === "" || (!value.includes(" ") && !isNaN(value))) {
+      setInputNumber(value);
+    }
+  };
+
   return (
-    <div className="p-6 bg-gray-900 text-white min-h-screen">
-      <div className="max-w-4xl mx-auto bg-gray-800 p-4 rounded-lg shadow-lg">
-        <div className="grid grid-cols-2 gap-4">
+    <div className="p-6 bg-transparent text-white min-h-screen">
+      <div className="max-w-4xl mx-auto bg-transparent p-4 rounded-lg shadow-lg border-2 border-gray-600">
+        <div className="grid grid-cols-2 gap-4 ">
           <div>
             <div className="mt-2">
               <label
@@ -138,8 +145,8 @@ const ConversionForm = React.memo(({ prices, tokens }) => {
             <input
               id="inputNumber"
               value={inputNumber}
-              onChange={(e) => setInputNumber(e.target.value)}
-              className="w-full p-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              onChange={handleInputChange}
+              className="w-full p-2 bg-gray-800 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -171,7 +178,7 @@ const ConversionForm = React.memo(({ prices, tokens }) => {
               id="convertedNumber"
               value={convertedNumber}
               readOnly
-              className="w-full p-2 bg-gray-700 text-white rounded-md"
+              className="w-full p-2 bg-gray-800 text-white rounded-md"
             />
             <button
               onClick={() =>
