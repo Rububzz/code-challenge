@@ -83,8 +83,12 @@ const WalletPage: React.FC<Props> = (props: Props) => {
     }
 
     /**
-     * the filter is wrong, to get the correct balance amount it has to be balance.amount > 0
+     * - The filter is wrong, to get the correct balance amount it has to be balance.amount > 0
      * and lhsPriority does not exist, it is balancePriority instead
+     *
+     * - Price is not a required dependency in this case for useMemo as the sorting and filtering
+     * functions are not utilise or depend on the price.
+     *
      */
     const sortedBalances = useMemo(() => {
         return balances.filter((balance: WalletBalance) => {
@@ -106,7 +110,8 @@ const WalletPage: React.FC<Props> = (props: Props) => {
                 return 1;
             }
         });
-    }, [balances, prices]);
+        //price is deleted
+    }, [balances]);
 
     /**
      * - formattedBalance should be used in this case as we need the formatted property. Putting formatted balances in the rows during
